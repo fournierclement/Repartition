@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Scanner;
 
+import com.opencsv.CSVReader;
 
 public class Matrice {
     String[][] preferences;
@@ -11,7 +11,27 @@ public class Matrice {
     ArrayList<Regroupement> Eleves;
 
     public Matrice(String filePath) {
-    	
+    	CSVReader csv;
+    	try {
+			 csv = new CSVReader(new FileReader(filePath));
+			 String[] nextLine = csv.readNext();
+			 preferences = new String[nextLine.length-1][nextLine.length-1];
+			 for(int i = 1; i < nextLine.length; i++) {
+				 Eleves.add(new Eleve(nextLine[i], i-1));
+			 }
+			 int j = 0;
+			 while((nextLine = csv.readNext()) != null) {
+				 System.arraycopy(nextLine, 1, preferences[j], 0, nextLine.length-1);
+			 }
+			 System.out.println(preferences);
+		} catch (FileNotFoundException e) {
+			System.err.println("Fichier introuvable : " + filePath);
+			System.exit(-1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(-1);
+		}
     }
     
     private void preferencesARangs(){

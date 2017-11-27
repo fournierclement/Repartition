@@ -3,7 +3,7 @@ public class Eleve extends Regroupement {
     String nom;
     int indice;
 
-    void Eleve(String nom, int indice){
+	public Eleve(String nom, int indice){
         this.nom = nom;
         this.indice = indice;
     }

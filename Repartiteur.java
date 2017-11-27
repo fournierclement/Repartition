@@ -1,7 +1,7 @@
 
 
 public class Repartiteur {
-	public void main( String[] arg){
-
+	public static void main( String[] arg){
+		new Matrice((String) arg[0]);
 	}
 }
