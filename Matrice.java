@@ -1,21 +1,24 @@
-import Eleve;
 import java.io.*;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
-Public class Matrice {
+public class Matrice {
     String[][] preferences;
     int[][] rangs;
     double[][] distance;
     ArrayList<Regroupement> Eleves;
 
-    Private preferencesARangs(){
+    public Matrice(String filePath) {
+    	
+    }
+    
+    private void preferencesARangs(){
         // Parcourir tout le tableau (AJUSTER L'INDICE I)
-        for( int i = 0; i < preferences.length; i++) {
+        for( int i = 0; i < preferences.length; i++){
             int length = preferences[i].length;
-            int[] compteur = [0, 0, 0, 0, 0, 0];
+            int[] compteur = {0, 0, 0, 0, 0, 0};
             // Parcourir toute la ligne, compter le nombre de TB, B, etc.
             for( int j = 0; j < length; j++ ){
                 switch (preferences[i][j]) {
@@ -41,4 +44,6 @@ Public class Matrice {
             }
         }
     }
+    
+    
 }

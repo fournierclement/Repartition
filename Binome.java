@@ -1,5 +1,5 @@
 
-public class binome extends Regroupement {
+public class Binome extends Regroupement {
     Eleve eleve1;
     Eleve eleve2;
     int indice;
@@ -10,11 +10,12 @@ public class binome extends Regroupement {
         this.indice = indice;
     }
 
-    Eleve[] getMembers(){
-        return [eleve1, eleve2];
+    public Eleve[] getMembers(){
+        Eleve[] eleves = {eleve1, eleve2};
+        return eleves;
     }
 
-    String toString() {
+    public String toString() {
         return eleve1.toString() + ", " + eleve2.toString();
     }
 }
