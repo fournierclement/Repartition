@@ -1,4 +1,4 @@
 
 public abstract class Matrice {
-    public abstract String MatriceToString();
+    public abstract String matriceToString();
 }

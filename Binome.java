@@ -4,9 +4,20 @@ public class Binome extends Regroupement {
     Eleve eleve2;
     int indice;
 
-    void Eleve(Eleve e1, Eleve e2, int indice){
-        eleve2 = e2;
-        eleve1 = e1;
+    public Binome(Regroupement e1, Regroupement e2, int indice){
+        eleve2 = e2.getMembers()[0];
+        eleve1 = e1.getMembers()[0];
+        this.indice = indice;
+    }
+
+    public Binome(Regroupement e1, Regroupement e2){
+        eleve2 = e2.getMembers()[0];
+        eleve1 = e1.getMembers()[0];
+    }
+
+    public Binome(Binome b, int indice){
+        eleve2 = b.getMembers()[0];
+        eleve1 = b.getMembers()[1];
         this.indice = indice;
     }
 
@@ -16,6 +27,6 @@ public class Binome extends Regroupement {
     }
 
     public String toString() {
-        return eleve1.toString() + ", " + eleve2.toString();
+        return eleve1.toString() + " & " + eleve2.toString();
     }
 }

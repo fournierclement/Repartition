@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class MatriceRangs extends Matrice {
-	
+
 	private int[][] rangs;
 	private ArrayList<Regroupement> eleves;
 
@@ -10,7 +10,7 @@ public class MatriceRangs extends Matrice {
 		this.eleves = eleves;
 	}
 
-	public String MatriceToString() {
+	public String matriceToString() {
     	int rows = this.rangs.length;
         int columns = this.rangs[0].length;
         String str = "|\t";

@@ -11,8 +11,8 @@ public class MatricePreferences extends Matrice {
 
     public MatricePreferences(ArrayList<Regroupement> eleves, String[][] preferences) {
 	}
-    
-    
+
+
     public MatriceRangs preferencesARangs(){
         int[][] rangs = new int[preferences.length][preferences.length];
         // Parcourir tout le tableau (AJUSTER L'INDICE I)
@@ -46,9 +46,9 @@ public class MatricePreferences extends Matrice {
         }
         return new MatriceRangs(this.eleves, rangs) ;
     }
-    
-    
-    public String MatriceToString() {
+
+
+    public String matriceToString() {
     	int rows = this.preferences.length;
         int columns = this.preferences[0].length;
         String str = "|\t";

@@ -19,7 +19,7 @@ public class Repartiteur {
 			MatriceRangs rangs = prefs.preferencesARangs();
 			// Convertir en matrice de distance;
 			MatriceDistances distances = rangs.rangsADistances();
-			
+
 			Regroupement[] futursGroupes;
 			Trinome nouveauTrinome = null;
 			while( trinomesFaits < trinomesFaits){
@@ -55,9 +55,9 @@ public class Repartiteur {
 				distances.retireMembre(futursGroupes[0]);
 				groupesFaits++;
 			}
-			
+
 		// print
-			
+			System.out.println(elevesTries.toString());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
