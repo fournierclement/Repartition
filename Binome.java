@@ -26,6 +26,8 @@ public class Binome extends Regroupement {
         return eleves;
     }
 
+    public int getIndice(){ return this.indice; }
+    
     public String toString() {
         return eleve1.toString() + " & " + eleve2.toString();
     }
