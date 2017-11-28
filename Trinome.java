@@ -4,10 +4,10 @@ class Trinome extends Regroupement {
     Eleve eleve3;
     int indice;
 
-    void Eleve(Eleve e1, Eleve e2, Eleve e3, int indice){
+    void Eleve(Binome b1, Eleve e3, int indice){
         eleve3 = e3;
-        eleve2 = e2;
-        eleve1 = e1;
+        eleve2 = b1.eleve2;
+        eleve1 = b1.eleve1;
         this.indice = indice;
     }
 
