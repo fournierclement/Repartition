@@ -12,6 +12,8 @@ public class Eleve extends Regroupement {
     	Eleve[] eleves = { this };
         return eleves;
     }
+	
+    public int getIndice(){ return this.indice; }
 
     public String toString() {
         return nom;
