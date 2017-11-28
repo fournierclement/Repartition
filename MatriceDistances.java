@@ -28,7 +28,7 @@ public class MatriceDistances {
 
 	// Met les lignes et colones des membres du groupes à 0
 	public void retireMembre(Regroupement groupe){
-        int indice = groupe.indice;
+        int indice = groupe.getIndice();
         for (int i = 0; i < indice; i++){
             distances[i][indice] = calculeDistance(groupe, eleves.get(i));
             distances[indice][i] = calculeDistance(groupe, eleves.get(i));
