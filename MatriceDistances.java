@@ -6,7 +6,7 @@ public class MatriceDistances {
 
 	// Ajoute le groupe à la matrice et en calcule les distances
 	public void ajoutMembre(Regroupement groupe){
-        int indice = eleves.size()
+        int indice = eleves.size();
         double[][] nouvellesDistances = new double[indice+1][indice+1];
         int i = 0; int j = 0;
         double distance;
@@ -14,7 +14,7 @@ public class MatriceDistances {
             distance = distances[i][j];
             nouvellesDistances[i][j] = distance;
             nouvellesDistances[j][i] = distance;
-            if( i = j ){ i = 0; j++; count++ }
+            if( i == j ){ i = 0; j++; }
             else { i++; }
         }
         eleves.add(Regroupement.regrouper(groupe, indice ));
@@ -41,10 +41,10 @@ public class MatriceDistances {
         int min = 0; int count = 0;
         while( i < j && j < distances.length ){
             if( distances[i][j] > 0 && distances[i][j] < min || min == 0 ) {
-                min = distances[i][j];
+                min = (int) distances[i][j];
                 count = 0;
             }
-            if( i+1 >= j ){ i = 0; j++; count++ }
+            if( i+1 >= j ){ i = 0; j++; count++; }
             else { i++; }
         }
         Regroupement[] futursGroupes = new Regroupement[count];
@@ -57,11 +57,12 @@ public class MatriceDistances {
             if( i+1 >= j ){ i = 0; j++; }
             else { i++; }
         }
+        return futursGroupes;
 	}
 
 	// 0 si groupe impossible, ou la moyenne des rangs inter groupe.
 	public double calculeDistance(Regroupement groupe1, Regroupement groupe2){
-        if( groupe1.regroupementImpossible()) {
+        if( groupe1.regroupementImpossible(groupe2)) {
             int sum = 0;
             int k = 0;
             for(Eleve eleve1 : groupe1.getMembers()) {
@@ -72,7 +73,7 @@ public class MatriceDistances {
                 }
             }
             return sum/k;
-        } else { return 0 };
+        } else { return 0; };
 
 	}
 
@@ -82,7 +83,7 @@ public class MatriceDistances {
         Regroupement groupe;
         do {
             groupe = eleves.get(i);
-            i++
+            i++;
         } while (!(groupe instanceof Binome))
         eleves.remove(groupe);
         return groupe;

@@ -7,10 +7,11 @@ public abstract class Regroupement {
         if(
             (g1 instanceof Trinome || g2 instanceof Trinome) ||
             (g1 instanceof Binome && g2 instanceof Binome)
-        ) {
+        ){
             System.out.println("Regroupement impossible : " + g1 + " et " + g2);
-            System.out.println("Exit très sale");
+            System.out.println("Exit tres sale");
             System.exit(-1);
+            return(new Trinome((Binome) g1, (Eleve) g2));
         } else if (g1 instanceof Binome){
             return new Trinome((Binome) g1, (Eleve) g2);
         } else if (g2 instanceof Binome){
