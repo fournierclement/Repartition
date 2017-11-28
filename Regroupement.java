@@ -2,7 +2,8 @@
 public abstract class Regroupement {
     public abstract Eleve[] getMembers();
     public abstract String toString();
-
+    public abstract int getIndice();
+    
     public static Regroupement regrouper(Regroupement g1, Regroupement g2){
         if(
             (g1 instanceof Trinome || g2 instanceof Trinome) ||
