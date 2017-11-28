@@ -38,10 +38,10 @@ public class MatriceDistances {
 	// Trouve les distances minimales mais > 0 de la matrice (0 étant les cases "vides" ou "vidées").
 	public Regroupement[] distancesMin(){
         int i = 0; int j = 0;
-        int min = 0; int count = 0;
+        double min = 0; int count = 0;
         while( i < j && j < distances.length ){
             if( distances[i][j] > 0 && distances[i][j] < min || min == 0 ) {
-                min = (int) distances[i][j];
+                min = distances[i][j];
                 count = 0;
             }
             if( i+1 >= j ){ i = 0; j++; count++; }
