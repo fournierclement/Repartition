@@ -38,10 +38,10 @@ public class MatricePreferences extends Matrice {
                 switch (preferences[i][j]) {
                     case "TB": rangs[i][j] = 1; break;
                     case "B": rangs[i][j] = compteur[0] + 1; break;
-                    case "AB": rangs[i][j] = compteur[1] + 1; break;
-                    case "P": rangs[i][j] = compteur[2] + 1; break;
-                    case "I": rangs[i][j] = compteur[3] + 1; break;
-                    case "AR": rangs[i][j] = compteur[4] + 1; break;
+                    case "AB": rangs[i][j] = compteur[0] + compteur[1] + 1; break;
+                    case "P": rangs[i][j] = compteur[0]  + compteur[1]  + compteur[2] + 1; break;
+                    case "I": rangs[i][j] = compteur[0] + compteur[1]  + compteur[2] + compteur[3] + 1; break;
+                    case "AR": rangs[i][j] = compteur[0] + compteur[1]  + compteur[2] + compteur[3] + compteur[4] + 1; break;
                     case "-1": rangs[i][j] = 0; break;
                 }
             }

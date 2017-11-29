@@ -21,6 +21,16 @@ public abstract class Regroupement {
             return new Binome((Eleve) g1, (Eleve) g2);
         }
     }
+    
+    public static boolean eleveCommun(Regroupement g1, Regroupement g2){
+    	boolean commun = false;
+    	for( Eleve eleve1 : g1.getMembers()) {
+    		for( Eleve eleve2 : g2.getMembers()) {
+    			commun = commun || eleve1.equals(eleve2);
+    		}
+    	}
+    	return commun;
+    }
 
     public static Regroupement regrouper(Regroupement g, int indice){
         if( g instanceof Trinome ) { return new Trinome((Trinome) g, indice); }

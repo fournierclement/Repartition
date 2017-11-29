@@ -10,39 +10,76 @@ public class MatriceDistances {
 	}
 
 	// Ajoute le groupe à la matrice et en calcule les distances
-	public void ajoutMembre(Regroupement groupe){
-        int indice = eleves.size();
-        double[][] nouvellesDistances = new double[indice+1][indice+1];
-        int i = 0; int j = 0;
+	public void ajoutMembres(Regroupement[] groupes){
+        int tailleInit = eleves.size();
+        int i = tailleInit; int j = 0;
         double distance;
-        for(Eleve eleve1 : groupe.getMembers()) {
-        	for(Eleve eleve2 : groupe.getMembers()) {
-            	distances[eleve1.getIndice()][eleve2.getIndice()] = 0;
-            	distances[eleve2.getIndice()][eleve1.getIndice()] = 0;
-            }
+        
+        // Ajouter les nouveaux eleves.
+        for(Regroupement groupe: groupes){
+        	eleves.add(Regroupement.regrouper(groupe, i));
+        	i++;
         }
-        while( i <= j && j < indice ){
+        i = 0;
+        int tailleFin = eleves.size();
+        double[][] nouvellesDistances = new double[tailleFin][tailleFin];
+        
+        // Remplir la nouvelle matrice avec l'ancienne.
+        while( i <= j && j < tailleInit ){
             distance = distances[i][j];
             nouvellesDistances[i][j] = distance;
             nouvellesDistances[j][i] = distance;
             if( i == j ){ i = 0; j++; }
             else { i++; }
         }
+        
         this.distances = nouvellesDistances;
-        eleves.add(Regroupement.regrouper(groupe, indice ));
-        for ( i = 0; i < indice; i++){
-            distance = calculeDistance(groupe, eleves.get(i));
-            distances[i][indice] = distance;
-            distances[indice][i] = distance;
+        Regroupement groupe;
+        // Pour chaque nouveau groupe.
+        for ( i = tailleInit; i < tailleFin; i++ ) {
+        	groupe = eleves.get(i);
+        	// Pour chaque autre groupe
+	        for ( j = 0; j < tailleFin; j++){
+	            distance = calculeDistance(eleves.get(j), groupe);
+	            distances[i][j] = distance;
+	            distances[j][i] = distance;
+	        }
+	        // Vider les distances des groupes déjà contruits
+	        for(Eleve eleve1 : groupe.getMembers()) {
+	        	for(Eleve eleve2 : groupe.getMembers()) {
+	        		distances[eleve1.getIndice()][eleve2.getIndice()] = 0;
+	        		distances[eleve2.getIndice()][eleve1.getIndice()] = 0;
+	            }
+	        }
+	        
         }
+		System.out.println("Nouvelle matrice de distances calculée :");
+		System.out.println("(La distance est la moyenne des rangs que les eleves s'attribuent)");
+		System.out.println(this.toString());
 	}
 
-	// Met les lignes et colones des membres du groupes à 0
+	// Met les lignes et colonnes des membres du groupes à 0
 	public void retireMembre(Regroupement groupe){
-        int indice = groupe.getIndice();
-        for (int i = 0; i < indice; i++){
-            distances[i][indice] = calculeDistance(groupe, eleves.get(i));
-            distances[indice][i] = calculeDistance(groupe, eleves.get(i));
+        int indice;
+        Eleve[] elevesSortants = groupe.getMembers();
+        // Pour chacun de ses eleves.
+        for ( Eleve eleve : elevesSortants){
+        	indice = eleve.getIndice();
+        	// Vider ses lignes/colonnes;
+        	for (int i = 0; i < eleves.size(); i++){
+        		distances[i][indice] = 0;
+        		distances[indice][i] = 0;
+        	}
+        	// Vider les autres groupes contenants cet eleve.
+        	for (Regroupement autreGroupe: eleves){
+        		if( Regroupement.eleveCommun(autreGroupe, eleve)){
+        			indice = autreGroupe.getIndice();
+                	for (int i = 0; i < indice; i++){
+                		distances[i][indice] = 0;
+                		distances[indice][i] = 0;
+                	}
+        		}
+        	}
         }
 	}
 
@@ -77,7 +114,7 @@ public class MatriceDistances {
 
 	// 0 si groupe impossible, ou la moyenne des rangs inter groupe.
 	public double calculeDistance(Regroupement groupe1, Regroupement groupe2){
-        if( groupe1.regroupementImpossible(groupe2)) {
+        if( !groupe1.regroupementImpossible(groupe2)) {
             int sum = 0;
             int k = 0;
             for(Eleve eleve1 : groupe1.getMembers()) {
@@ -96,12 +133,19 @@ public class MatriceDistances {
 	public Binome premierBinome(){
         int i = 0;
         int fin = eleves.size();
+        int indice;
+        double sum = 0;
         Regroupement groupe = null;
-        do {
-            groupe = eleves.get(i);
-            i++;
-        } while ((!(groupe instanceof Binome)) && i < fin );
-        eleves.remove(groupe);
+        Regroupement temp = null;
+        while (groupe == null && (i < fin )){        	
+        	temp = eleves.get(i);
+        	sum = 0;
+        	for(double distance : distances[i]){ sum += distance; }
+        	i++;
+        	if (sum != 0 && (temp instanceof Binome)){
+        		groupe = temp;
+        	}
+        }
         return (Binome) groupe;
 	}
 

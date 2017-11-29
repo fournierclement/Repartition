@@ -20,7 +20,7 @@ public class Csv {
     	this.eleves = new ArrayList<Regroupement>(noms.length-1);
     	// Créé les nouveaux Eleves.
     	for(int i = 1; i < noms.length; i++ ){
-    		eleves.add(new Eleve(noms[i], i));
+    		eleves.add(new Eleve(noms[i], i-1));
     	}
     	
     	String[] prefs;
