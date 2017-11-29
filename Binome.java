@@ -16,8 +16,8 @@ public class Binome extends Regroupement {
     }
 
     public Binome(Binome b, int indice){
-        eleve2 = b.getMembers()[0];
-        eleve1 = b.getMembers()[1];
+        eleve1 = b.getMembers()[0];
+        eleve2 = b.getMembers()[1];
         this.indice = indice;
     }
 

@@ -10,6 +10,8 @@ public class MatricePreferences extends Matrice {
     ArrayList<Regroupement> eleves;
 
     public MatricePreferences(ArrayList<Regroupement> eleves, String[][] preferences) {
+    	this.preferences = preferences;
+    	this.eleves = eleves;
 	}
 
 
@@ -48,7 +50,7 @@ public class MatricePreferences extends Matrice {
     }
 
 
-    public String matriceToString() {
+    public String toString() {
     	int rows = this.preferences.length;
         int columns = this.preferences[0].length;
         String str = "|\t";

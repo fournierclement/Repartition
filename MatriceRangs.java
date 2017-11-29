@@ -10,7 +10,7 @@ public class MatriceRangs extends Matrice {
 		this.eleves = eleves;
 	}
 
-	public String matriceToString() {
+	public String toString() {
     	int rows = this.rangs.length;
         int columns = this.rangs[0].length;
         String str = "|\t";
@@ -22,8 +22,18 @@ public class MatriceRangs extends Matrice {
     }
 
 	public MatriceDistances rangsADistances() {
-		// TODO Auto-generated method stub
-		return null;
+		double [][] distances = new double[rangs.length][rangs.length];
+		int indice = rangs.length;
+		int i = 0; int j = 0;
+		double distance = 0;
+        while( i <= j && j < indice ){
+            distance = (rangs[i][j] + rangs[j][i]) / 2;
+            distances[i][j] = distance;
+            distances[j][i] = distance;
+            if( i == j ){ i = 0; j++; }
+            else { i++; }
+        }
+		return new MatriceDistances(eleves, distances);
 	}
 
 }
